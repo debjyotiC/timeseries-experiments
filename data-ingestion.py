@@ -1,8 +1,9 @@
-import requests as r
+from consentiumthings import consentiumthings
 
-data_url = ("https://consentiuminc.online/api/board/getdata/recent?receivekey=d46549f155ec2f887066c0ace65b86f2&boardkey"
-            "=b0953b10042e1094")
+ct = consentiumthings("53caf802535c7a87")
 
-data = r.get(data_url).json()['sensors']
+ct.begin_send("a98a467056c590a22d5d740f89a1c2f2")
+ct.send_data([1, 2, 3, 4], ['info1', 'info2', 'info3'])
 
-print(data)
+ct.begin_receive("d46549f155ec2f887066c0ace65b86f2", recent=False)
+print(ct.receive_data())
